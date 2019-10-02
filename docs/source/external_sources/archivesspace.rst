@@ -143,6 +143,16 @@ Current Rules
     end
 
 .. code-block:: rst
+    :name: Copy publisher
+
+    rule "copy publisher"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='publisher']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='publisher']" to "dcterms"."publisher"
+    end
+
+.. code-block:: rst
     :name: Set Resource Type
 
     rule "set resource type of Archival Materials"
