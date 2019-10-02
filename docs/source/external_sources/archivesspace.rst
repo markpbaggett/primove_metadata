@@ -123,6 +123,7 @@ Current Rules
 
 .. code-block:: rst
     :name: Copy First Title
+    :caption: Copy First Title
 
     rule "copy first title"
         when
