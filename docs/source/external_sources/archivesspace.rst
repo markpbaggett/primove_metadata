@@ -135,6 +135,7 @@ Current Rules
 
 .. code-block:: rst
     :name: Copy All Identifiers
+    :caption: Copy All Identifiers
 
     rule "copy all identifiers"
         when
@@ -145,6 +146,7 @@ Current Rules
 
 .. code-block:: rst
     :name: Copy publisher
+    :caption: Copy publisher
 
     rule "copy publisher"
         when
@@ -155,6 +157,7 @@ Current Rules
 
 .. code-block:: rst
     :name: Date rules
+    :caption: Prioritize first date but copy all dates to a second field
 
     rule "copy first date to dc:date"
         when
@@ -172,6 +175,7 @@ Current Rules
 
 .. code-block:: rst
     :name: Set Resource Type
+    :caption: Set all objects to be an archival material resource type
 
     rule "set resource type of Archival Materials"
         when
@@ -188,6 +192,7 @@ Sample Rules (No longer in use)
 
 .. code-block:: rst
     :name: Original Test MODS Normalization Rules
+    :caption: Original Test Rules for MODS
 
     rule "copy first title"
         when
