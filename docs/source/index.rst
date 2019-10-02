@@ -22,8 +22,9 @@ External Sources
 
 .. toctree::
    :maxdepth: 2
+   :glob:
 
-   external_sources
+   external_sources/*
 
 
 Indices and tables
