@@ -121,6 +121,37 @@ Below are the original normalization rules when we were trying to use oai_mods a
 Current Rules
 -------------
 
+.. code-block:: rst
+    :name: Copy First Title
+
+    rule "copy first title"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='title'][1]"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='title'][1]" to "dc"."title"
+    end
+
+
+.. code-block:: rst
+    :name: Copy All Identifiers
+
+    rule "copy all identifiers"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='identifier']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='identifier']" to "dc"."identifier"
+    end
+
+.. code-block:: rst
+    :name: Set Resource Type
+
+    rule "set resource type of Archival Materials"
+        when
+            true
+        then
+            set "archival_materials" in "discovery"."resourceType"
+    end
+
 
 
 -------------------------------
