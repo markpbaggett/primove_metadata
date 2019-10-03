@@ -184,7 +184,148 @@ Current Rules
             set "archival_materials" in "discovery"."resourceType"
     end
 
+.. code-block:: rst
+    :name: Copy Extent Information
+    :caption: Copy Extent Information
 
+    rule "copy all extent infomation to dcterms:extent"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='extent']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='extent']" to "dcterms"."extent"
+    end
+
+.. code-block:: rst
+    :name: Copy Language Information
+    :caption: Copy Language Information
+
+    rule "copy all languages to dcterms:language"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='language']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='language']" to "dcterms"."language"
+    end
+
+.. code-block:: rst
+    :name: Copy all Descriptions
+    :caption: Copy all Descriptions
+
+    rule "copy all descriptions to dcterms:description"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='description']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='description']" to "dcterms"."description"
+    end
+
+.. code-block:: rst
+    :name: Copy the abstract
+    :caption: Copy the abstract
+
+    rule "copy the abstract to dcterms:abstract"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='abstract']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='abstract']" to "dcterms"."abstract"
+    end
+
+.. code-block:: rst
+    :name: Copy the Access Rights
+    :caption: Copy the Access Rights
+
+    rule "copy access rights to dcterms:accessRights"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='accessRights']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='accessRights']" to "dcterms"."accessRights"
+    end
+
+.. code-block:: rst
+    :name: Copy Alternative Title
+    :caption: Copy Alternative Title
+
+    rule "copy alternative titles to dcterms:alternative"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='alternative']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='alternative']" to "dcterms"."alternative"
+    end
+
+.. code-block:: rst
+    :name: Copy Abstracts
+    :caption: Copy Abstracts
+
+    rule "copy abstracts to dcterms:abstract"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='abstract']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='abstract']" to "dcterms"."abstract"
+    end
+
+.. code-block:: rst
+    :name: Copy Rights
+    :caption: Copy Rights
+
+    rule "copy rights to dc:rights"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='rights']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='rights']" to "dc"."rights"
+    end
+
+.. code-block:: rst
+    :name: Copy Provenance Information to Description
+    :caption: Copy Provenance Information to Description
+
+    rule "copy provenance to dcterms:description"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='provenance']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='provenance']" to "dcterms"."description"
+    end
+
+.. code-block:: rst
+    :name: Copy subjects
+    :caption: Copy subjects
+
+    rule "copy subjects to dc:subject"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='subject']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='subject']" to "dc"."subject"
+    end
+
+.. code-block:: rst
+    :name: Copy Coverage
+    :caption: Copy coverage
+
+    rule "copy coverage to dcterms:coverage"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='coverage']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='coverage']" to "dcterms"."coverage"
+    end
+
+.. code-block:: rst
+    :name: Copy types to dc subject since they aren't really types in ArchivesSpace
+    :caption: Copy types to dc subject since they aren't really types in ArchivesSpace
+
+    rule "copy types to subjects"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='type']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='type']" to "dc"."subject"
+    end
+
+.. code-block:: rst
+    :name: Copy relation to description
+    :caption: Copy relation to description
+
+    rule "copy relations to description"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='relation']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dcterms/' and local-name()='dcterms'][1]/*[namespace-uri()='http://purl.org/dc/terms/' and local-name()='relation']" to "dcterms"."description"
+    end
 
 -------------------------------
 Sample Rules (No longer in use)
@@ -196,7 +337,7 @@ Sample Rules (No longer in use)
 
     rule "copy first title"
         when
-            exist "/record/metadata[1]/*[namespace-uri()='http://www.loc.gov/mods/v3' and local-name()='mods'][1]/*[namespace-uri()='http://www.loc.gov/mods/v3' and local-name()='titleinfo'][1]"
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.loc.gov/mods/v3' and local-name()='mods'][1]/*[namespace-uri()='http://www.loc.gov/mods/v3' and local-name()='titleinfo=='][1]"
         then
             copy "/record/metadata[1]/*[namespace-uri()='http://www.loc.gov/mods/v3' and local-name()='mods'][1]/*[namespace-uri()='http://www.loc.gov/mods/v3' and local-name()='titleinfo'][1]/*[namespace-uri()='http://www.loc.gov/mods/v3' and local-name()='title']" to "dc"."title"
     end
