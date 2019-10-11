@@ -111,6 +111,13 @@ rather than oai_mods because of an `issue with well-formedness in oai_mods in Ar
 Discovery Import Profile
 ========================
 
+This is the settings for our discovery import profile for ArchivesSpace:
+
+
+* Base URL: `http://albatross.lib.utk.edu/oai <http://albatross.lib.utk.edu/oai>`_
+* Set: collection
+* Metadata Prefix: oai_dcterms
+
 
 Normalization Rules
 ===================
