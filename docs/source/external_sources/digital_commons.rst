@@ -129,3 +129,49 @@ Discovery Import Profile
 Normalization Rules
 ===================
 
+.. code-block:: xml
+    :name: Sample XML Record
+    :caption: Sample XML Record
+
+    <record>
+    <header>
+    <identifier>oai:trace.tennessee.edu:utk_gradthes-1127</identifier>
+    <datestamp>2010-02-01T23:31:58Z</datestamp>
+    <setSpec>publication:utk_gradthes</setSpec>
+    <setSpec>publication:utk-coll</setSpec>
+    <setSpec>publication:utk-grad</setSpec>
+    </header>
+    <metadata>
+    <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.bepress.com/OAI/2.0/qualified-dublin-core/ https://resources.bepress.com/assets/xsd/oai_qualified_dc.xsd">
+    <dc:title>
+    The Relations of the Cherokee Indians with the English in America Prior to 1763
+    </dc:title>
+    <dc:creator>Buchanan, David P.</dc:creator>
+    <dc:date.created>1923-12-01T08:00:00Z</dc:date.created>
+    <dc:thesis.degree.level>Thesis</dc:thesis.degree.level>
+    <dc:thesis.degree.name>Master of Arts</dc:thesis.degree.name>
+    <dc:contributor>ARRAY(0x7f7024cfef58)</dc:contributor>
+    <dc:subject>Political History</dc:subject>
+    <dc:subject>Social History</dc:subject>
+    <dc:subject>United States History</dc:subject>
+    <dc:description.abstract>
+    Thesis (M.A.) at University of Tennessee from 1923 describing relations between the Cherokee and English prior to 1763. This thesis by David Buchanan contains detailed accounts of the Cherokee nation before colonization of the Cherokee territories in the Appalachian region as well as interactions between the English army and settlers.
+    </dc:description.abstract>
+    <dc:identifier>https://trace.tennessee.edu/utk_gradthes/98</dc:identifier>
+    </oai_dc:dc>
+    </metadata>
+    </record>
+
+.. code-block:: rst
+    :name: Copy First Title
+    :caption: Copy First Title
+
+    rule "copy first title"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='title']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='title'][1]" to "dc"."title"
+    end
+
+
+
