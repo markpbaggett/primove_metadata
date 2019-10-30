@@ -238,3 +238,131 @@ Normalization Rules
         then
             copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='descriptionabstract']" to "dcterms"."abstract"
     end
+
+.. code-block::
+    :name: Copy thesisdegreediscipline
+    :caption: Copy thesisdegreediscipline
+
+    rule "copy thesisdegreediscipline"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='thesisdegreediscipline']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='descriptionabstract']" to "dcterms"."subject"
+    end
+
+.. code-block::
+    :name: Determine resource type
+    :caption: Determine resource type
+
+    rule "determine if etd"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='thesisdegreelevel']"
+        then
+            set "dissertations" in "discovery"."resourceType"
+    end
+
+    rule "determine if not etd"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='thesisdegreelevel']"
+        then
+            set "articles" in "discovery"."resourceType"
+    end
+
+.. code-block::
+    :name: Copy thesisdegreename to description
+    :caption: Copy thesisdegreename to description
+
+    rule "Copy thesisdegreename"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='thesisdegreename']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='thesisdegreename']" to "dcterms"."description"
+    end
+
+.. code-block::
+    :name: Copy description to description
+    :caption: Copy description to description
+
+    rule "Copy description"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='thesisdegreename']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='description']" to "dc"."description"
+    end
+
+.. code-block::
+    :name: Copy dcdateavailable to dcterms:date
+    :caption: Copy dcdateavailable to dcterms:date
+
+    rule "Copy dcdateavailable to dcterms:date"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='dateavailable']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='dateavailable']" to "dcterms"."date"
+    end
+
+.. code-block::
+    :name: Copy description to dc:descriptionnote
+    :caption: Copy description to dc:descriptionnote
+
+    rule "Copy description to dc:descriptionnote"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='descriptionnote']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='descriptionnote']" to "dcterms"."description"
+    end
+
+.. code-block::
+    :name: Copy rights
+    :caption: Copy rights
+
+    rule "Copy rights"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='rights']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='rights']" to "dc"."rights"
+    end
+
+    rule "Copy rightslicense"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='rightslicense']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='rightslicense']" to "dcterms"."rights"
+    end
+
+.. code-block::
+    :name: Copy coveragespatial
+    :caption: Copy coveragespatial
+
+    rule "Copy coveragespatial"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='coveragespatial']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='coveragespatial']" to "dcterms"."spatial"
+    end
+
+    rule "Copy coveragespatiallat"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='coveragespatiallat']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='coveragespatiallat']" to "dcterms"."spatial"
+    end
+
+    rule "Copy coveragespatiallong"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='coveragespatiallong']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='coveragespatiallong']" to "dcterms"."spatial"
+    end
+
+.. code-block::
+    :name: Copy publisher
+    :caption: Copy publisher
+
+    rule "Copy publisher"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='publisher']"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='publisher']" to "dc"."publisher"
+    end
+
