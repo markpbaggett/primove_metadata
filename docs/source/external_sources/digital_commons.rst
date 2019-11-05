@@ -366,3 +366,13 @@ Normalization Rules
             copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='publisher']" to "dc"."publisher"
     end
 
+.. code-block::
+    :name: Copy contributors if contributor does not contain Array
+    :caption: Copy contributors if contributor does not contain Array
+
+    rule "Copy contributors if not Array"
+        when
+            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='contributor'][not(contains(text(), 'ARRAY'))]"
+        then
+            copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='contributor']" to "dcterms"."contributor"
+    end
