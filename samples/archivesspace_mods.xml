@@ -1,0 +1,37 @@
+<record>
+<header>
+<identifier>
+oai:archivesspace//repositories/2/archival_objects/253315
+</identifier>
+<datestamp>2019-08-09T17:08:29Z</datestamp>
+</header>
+<metadata>
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://www.loc.gov/mods/v3 https://www.loc.gov/standards/mods/v3/mods-3-6.xsd">
+<location>
+<physicalLocation>
+Betsey B. Creekmore Special Collections and University Archives
+</physicalLocation>
+</location>
+<titleinfo>
+<title>
+Tennessee Federal Judicial Conference defernse of Judges Wrongly Accused, 3/11/1996
+</title>
+</titleinfo>
+<originInfo>
+<dateCreated>3/11/1996</dateCreated>
+</originInfo>
+<physicalDescription>
+<extent>40 Linear Feet; 36 boxes</extent>
+</physicalDescription>
+<language>
+<languageTerm authority="iso639-2b">eng</languageTerm>
+</language>
+<accessCondition type="restrictionOnAccess">
+The Modern Political Archives are housed at the Howard H. Baker Center for Public Policy. Researchers interested in consulting the MPA collections are advised to contact the Modern Political Archives.
+</accessCondition>
+<abstract>
+This collection contains records of a personal and professional nature. They include records on case related materials, personal correspondence, committee work, and court governance. The records cover Judge Jarvis' life and work in East Tennessee. The records date from 1975 to 2007.
+</abstract>
+</mods>
+</metadata>
+</record>
