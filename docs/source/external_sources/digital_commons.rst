@@ -263,7 +263,7 @@ Normalization Rules
 
     rule "determine if not etd"
         when
-            exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='thesis.degree.level']"
+            not exist "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='thesis.degree.level']"
         then
             set "articles" in "discovery"."resourceType"
     end
