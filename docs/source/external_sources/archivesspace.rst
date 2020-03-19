@@ -356,3 +356,15 @@ Sample Rules (No longer in use)
             set "archival_materials" in "discovery"."resourceType"
     end
 
+
+Discovery Import Profile
+========================
+
+----------------------
+File splitter patterns
+----------------------
+
+* Root element: `ListRecords`
+* Xpath to identifer: `record/header/identifier/text()`
+* Record elements tag: `record`
+
