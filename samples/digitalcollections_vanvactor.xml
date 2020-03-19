@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <record>
     <header>
         <identifier>vanvactor_6981</identifier>
@@ -31,6 +30,18 @@
                 <namePart>Van Vactor, David, 1906-1994</namePart>
                 <role>
                     <roleTerm authority="marcrelator" valueURI="http://id.loc.gov/vocabulary/relators/cmp">Composer</roleTerm>
+                </role>
+            </name>
+            <name valueURI="http://id.loc.gov/authorities/names/n82001311">
+                <namePart>Van Vactor, David, 1906-1994</namePart>
+                <role>
+                    <roleTerm authority="marcrelator" valueURI="http://id.loc.gov/vocabulary/relators/arr">Arranger</roleTerm>
+                </role>
+            </name>
+            <name valueURI="http://id.loc.gov/authorities/names/n82001311">
+                <namePart>Van Vactor, David, 1906-1994</namePart>
+                <role>
+                    <roleTerm authority="marcrelator" valueURI="http://id.loc.gov/vocabulary/relators/arr">Arranger</roleTerm>
                 </role>
             </name>
             <subject authority="lcsh" valueURI="http://id.loc.gov/authorities/subjects/sh85129035">
