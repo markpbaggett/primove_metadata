@@ -126,6 +126,13 @@ with simple dc.
 Discovery Import Profile
 ========================
 
+* root element tag: `ListRecords`
+* record elements tag: `record`
+* xpath to the identifier tag: `record/header/identifier/text()`
+* base-url: `https://dpla.lib.utk.edu/repox/OAIHandler`
+* metadata format: `oai_qdc`
+
+
 Normalization Rules
 ===================
 
@@ -376,3 +383,174 @@ Normalization Rules
         then
             copy "/record/metadata[1]/*[namespace-uri()='http://www.openarchives.org/OAI/2.0/oai_dc/' and local-name()='dc'][1]/*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='contributor']" to "dcterms"."contributor"
     end
+
+Normalized Record Post Import
+=============================
+
+A sample record as XML:
+
+.. code-block:: xml
+    :name: Sample XML
+    :caption: A sample ETD as XML
+
+    <record>
+    <header>
+    <identifier>oai:trace.tennessee.edu:utk_gradthes-6890</identifier>
+    <datestamp>2020-02-13T02:30:08Z</datestamp>
+    <setSpec>publication:utk-coll</setSpec>
+    <setSpec>publication:utk_gradthes</setSpec>
+    <setSpec>publication:utk-grad</setSpec>
+    </header>
+    <metadata>
+    <oai_dc:dc xsi:schemaLocation="http://www.bepress.com/OAI/2.0/qualified-dublin-core/ https://resources.bepress.com/assets/xsd/oai_qualified_dc.xsd">
+    <dc:title>
+    STUDY OF THE DYNAMIC BEHAVIOR OF MOLTEN-SALT REACTORS
+    </dc:title>
+    <dc:creator>Singh, Vikram</dc:creator>
+    <dc:date.created>2019-05-01T07:00:00Z</dc:date.created>
+    <dc:thesis.degree.level>Thesis</dc:thesis.degree.level>
+    <dc:thesis.degree.name>Master of Science</dc:thesis.degree.name>
+    <dc:thesis.degree.discipline>Nuclear Engineering</dc:thesis.degree.discipline>
+    <dc:contributor>Belle Upadhyaya</dc:contributor>
+    <dc:contributor>Ondřej Chvála, Laurence Miller, Lawrence Heilbronn</dc:contributor>
+    <dc:subject>molten-salt reactor</dc:subject>
+    <dc:subject>dynamics</dc:subject>
+    <dc:subject>modeling</dc:subject>
+    <dc:subject>fission product poisoning</dc:subject>
+    <dc:subject>load-following</dc:subject>
+    <dc:subject>sensitivity analysis</dc:subject>
+    <dc:description.abstract>
+    Molten-Salt Reactors (MSR) are a Gen-IV reactor concept being investigated by companies and institutions alike. These reactors are considerably different from the current fleet of Light-Water Reactors and outside the experience base of most Nuclear Engineers. The fluid nature of the fuel leads to delayed temperature and reactivity feedback effects unique to each reactor design that need to be characterized to determine operability and safety limits. Moreover, the design space under consideration encompasses various fuel-cycles, neutron spectra, and materials. This requires a modeling methodology that can be applied to the breadth of designs under development and is the subject of ongoing research at the University of Tennessee. This thesis presents a dynamic modeling approach that was validated against experimental data from the Molten-Salt Reactor Experiment. The developed lumped-parameter models are nonlinear and represent time rate of change in mass and energy in all parts of the reactor. Reactivity feedbacks arising from changes in temperature and neutron poison concentrations are taken into account. These models can be used to study both the time and frequency response to perturbations caused during normal operating conditions and during anomalies resulting from failure of certain components. The thesis incorporates material published in a series of journal articles and conference proceedings. The validated modeling approach is detailed, and all equations and parameters of interest are listed. Three reactor systems are modeled, namely the Molten-Salt Reactor Experiment, two-fluid Molten-Salt Breeder Reactor, and a plant-level model based on the Molten-Salt Demonstration Reactor. Application of the models to studying operational anomalies, dynamic effects of xenon and samarium neutron poisons, parametric sensitivity analysis, and load-following are also presented. From the investigated perturbations for the presented designs, it is found that these systems are stable and self-regulating. Modeling results suggest that well-designed MSRs with adequate negative feedback exhibit excellent load-following characteristics that can be leveraged to engineer control systems offering a great deal of autonomy.
+    </dc:description.abstract>
+    <dc:description.note>
+    </dc:description.note>
+    <dc:identifier>https://trace.tennessee.edu/utk_gradthes/5482</dc:identifier>
+    </oai_dc:dc>
+    </metadata>
+    </record>
+
+The same record nomalized as JSON:
+
+.. code-block:: json
+    :name: Primo Normalized Record
+    :caption: The record normalized in Primo.
+
+    {
+        "display": {
+            "source": ["UTK_DigitalCommons_TRACE"],
+            "type": ["dissertation"],
+            "title": ["STUDY OF THE DYNAMIC BEHAVIOR OF MOLTEN-SALT REACTORS"],
+            "subject": ["Nuclear Engineering", "molten-salt reactor", "dynamics", "modeling", "fission product poisoning", "load-following", "sensitivity analysis"],
+            "identifier": ["https://trace.tennessee.edu/utk_gradthes/5482"],
+            "creator": ["Singh, Vikram"],
+            "description": ["Portions of this document were previous published in journal articles and conference proceedings. This material has been incorporated here with permission from the publishers. The first page of each chapter presents a brief background on the work carried out by the author and his colleagues, and provides references to the published articles.", "Master of Science", "Molten-Salt Reactors (MSR) are a Gen-IV reactor concept being investigated by companies and institutions alike. These reactors are considerably different from the current fleet of Light-Water Reactors and outside the experience base of most Nuclear Engineers. The fluid nature of the fuel leads to delayed temperature and reactivity feedback effects unique to each reactor design that need to be characterized to determine operability and safety limits. Moreover, the design space under consideration encompasses various fuel-cycles, neutron spectra, and materials. This requires a modeling methodology that can be applied to the breadth of designs under development and is the subject of ongoing research at the University of Tennessee. This thesis presents a dynamic modeling approach that was validated against experimental data from the Molten-Salt Reactor Experiment. The developed lumped-parameter models are nonlinear and represent time rate of change in mass and energy in all parts of the reactor. Reactivity feedbacks arising from changes in temperature and neutron poison concentrations are taken into account. These models can be used to study both the time and frequency response to perturbations caused during normal operating conditions and during anomalies resulting from failure of certain components. The thesis incorporates material published in a series of journal articles and conference proceedings. The validated modeling approach is detailed, and all equations and parameters of interest are listed. Three reactor systems are modeled, namely the Molten-Salt Reactor Experiment, two-fluid Molten-Salt Breeder Reactor, and a plant-level model based on the Molten-Salt Demonstration Reactor. Application of the models to studying operational anomalies, dynamic effects of xenon and samarium neutron poisons, parametric sensitivity analysis, and load-following are also presented. From the investigated perturbations for the presented designs, it is found that these systems are stable and self-regulating. Modeling results suggest that well-designed MSRs with adequate negative feedback exhibit excellent load-following characteristics that can be leveraged to engineer control systems offering a great deal of autonomy."],
+            "mms": ["9925897935302311"],
+            "contributor": ["Belle Upadhyaya", "Ondřej Chvála, Laurence Miller, Lawrence Heilbronn"],
+            "version": ["0"]
+        },
+        "control": {
+            "sourcerecordid": ["9925897935302311"],
+            "recordid": ["alma9925897935302311"],
+            "sourceid": "alma",
+            "originalsourceid": ["urn:dpla.lib.utk.edu.utk_tracerepox:f9ed25be-aef2-4b5e-b842-9aabab6f50f6"],
+            "sourcesystem": ["Other"],
+            "sourceformat": ["DC"],
+            "score": ["1.0"]
+        },
+        "addata": {
+            "au": ["Singh, Vikram"],
+            "aucorp": ["Belle Upadhyaya", "Ondřej Chvála, Laurence Miller, Lawrence Heilbronn"],
+            "abstract": ["Molten-Salt Reactors (MSR) are a Gen-IV reactor concept being investigated by companies and institutions alike. These reactors are considerably different from the current fleet of Light-Water Reactors and outside the experience base of most Nuclear Engineers. The fluid nature of the fuel leads to delayed temperature and reactivity feedback effects unique to each reactor design that need to be characterized to determine operability and safety limits. Moreover, the design space under consideration encompasses various fuel-cycles, neutron spectra, and materials. This requires a modeling methodology that can be applied to the breadth of designs under development and is the subject of ongoing research at the University of Tennessee. This thesis presents a dynamic modeling approach that was validated against experimental data from the Molten-Salt Reactor Experiment. The developed lumped-parameter models are nonlinear and represent time rate of change in mass and energy in all parts of the reactor. Reactivity feedbacks arising from changes in temperature and neutron poison concentrations are taken into account. These models can be used to study both the time and frequency response to perturbations caused during normal operating conditions and during anomalies resulting from failure of certain components. The thesis incorporates material published in a series of journal articles and conference proceedings. The validated modeling approach is detailed, and all equations and parameters of interest are listed. Three reactor systems are modeled, namely the Molten-Salt Reactor Experiment, two-fluid Molten-Salt Breeder Reactor, and a plant-level model based on the Molten-Salt Demonstration Reactor. Application of the models to studying operational anomalies, dynamic effects of xenon and samarium neutron poisons, parametric sensitivity analysis, and load-following are also presented. From the investigated perturbations for the presented designs, it is found that these systems are stable and self-regulating. Modeling results suggest that well-designed MSRs with adequate negative feedback exhibit excellent load-following characteristics that can be leveraged to engineer control systems offering a great deal of autonomy."],
+            "format": ["dissertation"],
+            "genre": ["dissertation"],
+            "ristype": ["thes"],
+            "btitle": ["STUDY OF THE DYNAMIC BEHAVIOR OF MOLTEN-SALT REACTORS"]
+        },
+        "sort": {
+            "title": ["STUDY OF THE DYNAMIC BEHAVIOR OF MOLTEN-SALT REACTORS"],
+            "author": ["Singh, Vikram"]
+        },
+        "search": {
+            "rtype": "dissertations",
+            "general": "https://trace.tennessee.edu/utk_gradthes/5482",
+            "creator": "Singh, Vikram",
+            "contributor": ["Ondřej Chvála, Laurence Miller, Lawrence Heilbronn", "Belle Upadhyaya"],
+            "sort_title": "STUDY OF THE DYNAMIC BEHAVIOR OF MOLTEN-SALT REACTORS",
+            "subject": ["sensitivity analysis", "load-following", "fission product poisoning", "modeling", "dynamics", "molten-salt reactor", "Nuclear Engineering"],
+            "description": ["Molten-Salt Reactors (MSR) are a Gen-IV reactor concept being investigated by companies and institutions alike. These reactors are considerably different from the current fleet of Light-Water Reactors and outside the experience base of most Nuclear Engineers. The fluid nature of the fuel leads to delayed temperature and reactivity feedback effects unique to each reactor design that need to be characterized to determine operability and safety limits. Moreover, the design space under consideration encompasses various fuel-cycles, neutron spectra, and materials. This requires a modeling methodology that can be applied to the breadth of designs under development and is the subject of ongoing research at the University of Tennessee. This thesis presents a dynamic modeling approach that was validated against experimental data from the Molten-Salt Reactor Experiment. The developed lumped-parameter models are nonlinear and represent time rate of change in mass and energy in all parts of the reactor. Reactivity feedbacks arising from changes in temperature and neutron poison concentrations are taken into account. These models can be used to study both the time and frequency response to perturbations caused during normal operating conditions and during anomalies resulting from failure of certain components. The thesis incorporates material published in a series of journal articles and conference proceedings. The validated modeling approach is detailed, and all equations and parameters of interest are listed. Three reactor systems are modeled, namely the Molten-Salt Reactor Experiment, two-fluid Molten-Salt Breeder Reactor, and a plant-level model based on the Molten-Salt Demonstration Reactor. Application of the models to studying operational anomalies, dynamic effects of xenon and samarium neutron poisons, parametric sensitivity analysis, and load-following are also presented. From the investigated perturbations for the presented designs, it is found that these systems are stable and self-regulating. Modeling results suggest that well-designed MSRs with adequate negative feedback exhibit excellent load-following characteristics that can be leveraged to engineer control systems offering a great deal of autonomy.", "Master of Science", "Portions of this document were previous published in journal articles and conference proceedings. This material has been incorporated here with permission from the publishers. The first page of each chapter presents a brief background on the work carried out by the author and his colleagues, and provides references to the published articles."],
+            "journal_title": "STUDY OF THE DYNAMIC BEHAVIOR OF MOLTEN-SALT REACTORS",
+            "title": "STUDY OF THE DYNAMIC BEHAVIOR OF MOLTEN-SALT REACTORS",
+            "source_code": "UTK_DigitalCommons_TRACE",
+            "facet_creatorcontrib": ["Singh, Vikram", "Ondřej Chvála, Laurence Miller, Lawrence Heilbronn", "Belle Upadhyaya"],
+            "sort_author": "Singh, Vikram"
+        },
+        "delivery": {
+            "bestlocation": null,
+            "holding": null,
+            "electronicServices": [{
+                "adaptorid": "ALMA_01",
+                "ilsApiId": "urn:dpla.lib.utk.edu.utk_tracerepox:f9ed25be-aef2-4b5e-b842-9aabab6f50f6",
+                "serviceUrl": "https://trace.tennessee.edu/utk_gradthes/5482",
+                "licenceUrl": null,
+                "licenceExist": "false",
+                "packageName": "Link to Resource",
+                "availiability": null,
+                "authNote": null,
+                "publicNote": null,
+                "serviceNotAvailable": null,
+                "serviceNotAvailableReason": null,
+                "relatedTitle": null,
+                "numberOfFiles": 0,
+                "hasAccess": false,
+                "serviceType": "ELECTRONIC",
+                "fileType": null,
+                "pdfFilesUrl": null,
+                "serviceDescription": null,
+                "researchFileList": null,
+                "researchLinksList": null,
+                "@id": null
+            }],
+            "quickAccessService": null,
+            "deliveryCategory": ["Remote Search Resource"],
+            "serviceMode": ["Viewit"],
+            "availability": ["ext_not_restricted"],
+            "availabilityLinks": ["directlink"],
+            "availabilityLinksUrl": ["https://trace.tennessee.edu/utk_gradthes/5482"],
+            "displayedAvailability": "ext_not_restricted",
+            "displayLocation": null,
+            "additionalLocations": null,
+            "physicalItemTextCodes": null,
+            "feDisplayOtherLocations": null,
+            "almaInstitutionsList": [],
+            "recordInstitutionCode": null,
+            "recordOwner": "01UTN_KNOXVILLE",
+            "GetIt1": [{
+                "category": "Remote Search Resource",
+                "links": [{
+                    "isLinktoOnline": true,
+                    "getItTabText": "service_viewit",
+                    "adaptorid": "ALMA_01",
+                    "ilsApiId": "urn:dpla.lib.utk.edu.utk_tracerepox:f9ed25be-aef2-4b5e-b842-9aabab6f50f6",
+                    "link": "https://trace.tennessee.edu/utk_gradthes/5482",
+                    "inst4opac": "",
+                    "displayText": null,
+                    "@id": "_:0"
+                }]
+            }],
+            "physicalServiceId": null,
+            "link": [{
+                "displayLabel": "Link to Resource",
+                "linkURL": "https://trace.tennessee.edu/utk_gradthes/5482",
+                "linkType": "addlink",
+                "publicNote": null,
+                "@id": "_:0"
+            }, {
+                "displayLabel": "thumbnail",
+                "linkURL": "",
+                "linkType": "http://purl.org/pnx/linkType/thumbnail",
+                "publicNote": null,
+                "@id": "_:0"
+            }],
+            "hasD": null
+        }
+    }
