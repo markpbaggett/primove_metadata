@@ -380,4 +380,4 @@ RegEx for Links
 
 Thumbnail: ^(http(s):\/\/).*(TN\/view)$
 
-Object (Item/Collection): ^(http(s):\/\/).*[0-9]$|(collections%3A.*)$|(gsmrc%3A.*)|(arrowmont%3A.*)$
+Object (Item/Collection): ^(http(s):\/\/digital\.lib\.utk\.edu\/collections\/islandora\/object\/).*([0-9]|collections%3A.*|gsmrc%3A.*|arrowmont%3A.*)$
