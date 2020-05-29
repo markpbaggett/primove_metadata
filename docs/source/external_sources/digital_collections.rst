@@ -342,7 +342,17 @@ Normalization Rules
 			copy "/*[local-name()='record']/*[local-name()='metadata']/*[local-name()='mods']/*[local-name()='subject']/*[local-name()='geographic']" to "dcterms"."coverage"
 	end
 	
-	
+
+.. code-block::
+    :name: Copy Creators
+    :caption: Copy Creators
+
+	rule "Copy Creators"
+    	when
+        	exist "/*[local-name()='record']/*[local-name()='metadata']/*[local-name()='mods']/*[local-name()='name']/*[local-name()='role']/*[local-name()='roleTerm'][contains(text(), 'Artist') or contains(text(), 'Architect') or contains(text(), 'Author') or contains(text(), 'Cartographer') or contains(text(), 'Composer') or contains(text(), 'Creator') or contains(text(), 'Designer') or contains(text(), 'Engraver') or contains(text(), 'Illustrator') or contains(text(), 'Interviewee')or contains(text(), 'Lithographer') or contains(text(), 'Lyricist') or contains(text(), 'Photographer')]"
+    	then
+        	copy "/*[local-name()='record']/*[local-name()='metadata']/*[local-name()='mods']/*[local-name()='name']/*[local-name()='namePart']" to "dc"."creator"
+	end	
 	
 	rule "Copy names and add roleTerms"
 when
@@ -371,7 +381,7 @@ end
 
 	rule "Set discovery resource type of Digital Collections Item"
     	when
-        	exist "/*[local-name()='record']/*[local-name()='metadata']/*[local-name()='mods']/*[local-name()='typeOfResource'][not(@collection='yes')]"
+        	not exist "//*[local-name()='typeOfResource'][@collection='yes']"
     	then
         	set "digital_items" in "discovery"."resourceType"
 	end
