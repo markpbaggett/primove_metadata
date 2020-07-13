@@ -26,9 +26,7 @@ and the `Configuring Import Profiles for Primo VE <https://knowledge.exlibrisgro
 +-----------------------------------------------------------------------------------------------------------+------------------------------+---------------+------------------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | mods:originInfo/mods:dateIssued   AND mods:originInfo/mods:dateCreated AND mods:originInfo/mods:dateOther | dc:date                      | Creation Date | Creation Date          | Creation Date          |                                                                                                                                                                                                                                                                                                                                                         |
 +-----------------------------------------------------------------------------------------------------------+------------------------------+---------------+------------------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| mods:name/mods:namePart                                                                                   | dc:creator                   | Creator       | Creator & Contributors | Creator & Contributors | Creator roles include: Architect, Artist, Author, Cartographer, Composer, Creator, Designer, Engraver, Illustrator, Interviewee, Lithographer, Lyricist, Photographer                                                                                                                                                                        |
-+-----------------------------------------------------------------------------------------------------------+------------------------------+---------------+------------------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| mods:name/mods:namePart                                                                                   | dcterms:contributor          | Contributor   | Creator & Contributors | Creator & Contributors | Contributor roles include: Arranger, Attributed name, Client, Compiler, Contractor, Contributor, Copyright holder, Correspondent, Distributor, Donor, Editor, Former owner, Honoree, Interviewer, Issuing body, Musical director, Printer of plates, Production company, Originator, Other, Owner, Printer, Publisher, Stage director, Standards body   |
+| mods:name/mods:namePart                                                                                   | dc:creator                   | Creator       | Creator & Contributors | Creator & Contributors | Presently all names regardless of roleTerm get mapped to dc:creator. A Salesforce issue has been opened to see if we can map particular roleTerms to dc:contributor and others to dc:creator.                                                                                                                                                           | 
 +-----------------------------------------------------------------------------------------------------------+------------------------------+---------------+------------------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | mods:originInfo/mods:publisher                                                                            | dcterms:publisher            | Publisher     |                        | General                |                                                                                                                                                                                                                                                                                                                                                         |
 +-----------------------------------------------------------------------------------------------------------+------------------------------+---------------+------------------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -342,27 +340,16 @@ Normalization Rules
 			copy "/*[local-name()='record']/*[local-name()='metadata']/*[local-name()='mods']/*[local-name()='subject']/*[local-name()='geographic']" to "dcterms"."coverage"
 	end
 	
-
 .. code-block::
     :name: Copy Creators
     :caption: Copy Creators
 
-	rule "Copy Creators"
-    	when
-        	exist "/*[local-name()='record']/*[local-name()='metadata']/*[local-name()='mods']/*[local-name()='name']/*[local-name()='role']/*[local-name()='roleTerm'][contains(text(), 'Artist') or contains(text(), 'Architect') or contains(text(), 'Author') or contains(text(), 'Cartographer') or contains(text(), 'Composer') or contains(text(), 'Creator') or contains(text(), 'Designer') or contains(text(), 'Engraver') or contains(text(), 'Illustrator') or contains(text(), 'Interviewee')or contains(text(), 'Lithographer') or contains(text(), 'Lyricist') or contains(text(), 'Photographer')]"
-    	then
-        	copy "/*[local-name()='record']/*[local-name()='metadata']/*[local-name()='mods']/*[local-name()='name']/*[local-name()='namePart']" to "dc"."creator"
+	rule "Copy all names as creators"
+		when
+			exist "/*[local-name()='record']/*[local-name()='metadata']/*[local-name()='mods']/*[local-name()='name']/*[local-name()='namePart']"
+		then
+			copy "/*[local-name()='record']/*[local-name()='metadata']/*[local-name()='mods']/*[local-name()='name']/*[local-name()='namePart']" to "dc"."creator"
 	end	
-	
-	rule "Copy names and add roleTerms"
-when
-exist "/*[local-name()='record']/*[local-name()='metadata']/*[local-name()='mods']/*[local-name()='name']/*[local-name()='namePart']"
-then
-copy "concat((//*[local-name()='record']/*[local-name()='metadata']/*[local-name()='mods']/*[local-name()='name']/*[local-name()='namePart']/text()), '(', (//*[local-name()='record']/*[local-name()='metadata']/*[local-name()='mods']/*[local-name()='name']/*[local-name()='namePart']/*[local-name()='role']/*[local-name()='roleTerm']/text()))" to dc"."creator"
-end
-	
-	
-	
 
 .. code-block::
     :name: Copy rights values
