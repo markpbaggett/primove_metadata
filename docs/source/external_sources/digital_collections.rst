@@ -387,6 +387,14 @@ Normalization Rules
 RegEx for Links
 ===============
 
-Thumbnail: ^(http(s):\/\/).*(TN\/view)$
+Thumbnail: 
 
-Object (Item/Collection): ^(http(s):\/\/digital\.lib\.utk\.edu\/collections\/islandora\/object\/).*([0-9]|collections%3A.*|gsmrc%3A.*|arrowmont%3A.*)$
+.. code-block::
+
+	^(http(s):\/\/).*(TN\/view)$
+
+Object (Item/Collection): 
+
+.. code-block::
+
+	^(http(s):\/\/digital\.lib\.utk\.edu\/collections\/islandora\/object\/).*([0-9]|collections%3A.*|gsmrc%3A.*|arrowmont%3A.*)$
